@@ -1,0 +1,50 @@
+{
+  "name": "amap-date-spot",
+  "display_name": "约会地点推荐 Date Spot",
+  "version": "1.0.0",
+  "description": "约会/见面地点推荐助手。输入一个地点或两人位置自动算中点，搜索周边咖啡馆、小酒馆、公园、书店等适合聊天的场所，智能筛选排除嘈杂场所，输出 3 个不同风格推荐并附通勤时间、导航链接、约会动线编排、出片建议、停车信息、备选方案。适用于约会、相亲、朋友见面、商务闲聊、纪念日/生日/表白。",
+  "descriptionZh": "约会/见面地点推荐助手。输入一个地点或两人位置自动算中点，搜索周边咖啡馆、小酒馆、公园、书店等适合聊天的场所，智能筛选排除嘈杂场所，输出 3 个不同风格推荐并附通勤时间、导航链接、约会动线编排、出片建议、停车信息、备选方案。适用于约会、相亲、朋友见面、商务闲聊、纪念日/生日/表白。",
+  "author": "dongdongyue",
+  "repository": "https://github.com/dongdongyue/amap-date-spot",
+  "homepage": "https://github.com/dongdongyue/amap-date-spot#readme",
+  "license": "MIT",
+  "requires": {
+    "env": [
+      "AMAP_API_KEY",
+      "AMAP_JSAPI_KEY",
+      "AMAP_SECURITY_JS_CODE"
+    ],
+    "primaryEnv": "AMAP_API_KEY"
+  },
+  "category": "lifestyle",
+  "tags": [
+    "date",
+    "dating",
+    "meetup",
+    "cafe",
+    "amap",
+    "map",
+    "lifestyle",
+    "约会",
+    "相亲",
+    "见面",
+    "咖啡馆",
+    "高德",
+    "地图",
+    "生活"
+  ],
+  "examples": [
+    {
+      "input": "我在大行宫，她在河西万达，第一次见面",
+      "description": "双人模式：自动计算中点 + 双方通勤时间"
+    },
+    {
+      "input": "新街口附近有什么好的见面地方",
+      "description": "单人模式：以指定地点为圆心搜周边"
+    },
+    {
+      "input": "找个安静的茶馆，适合谈事情",
+      "description": "指定品类搜索"
+    }
+  ]
+}

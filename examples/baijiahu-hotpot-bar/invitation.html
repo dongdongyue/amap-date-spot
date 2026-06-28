@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><title>🍻 碰面邀请</title><style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{height:100%;overflow:hidden}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif}
+#map{width:100%;height:100%}
+.map-title{position:fixed;top:max(16px,env(safe-area-inset-top,16px));left:16px;z-index:999;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:12px 16px;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.08);max-width:calc(100% - 32px)}
+.map-title h1{font-size:18px;font-weight:800;color:#333;margin-bottom:2px}.map-title .sub{font-size:12px;color:#999;line-height:1.5}
+.bottom-sheet{position:fixed;left:0;right:0;bottom:0;z-index:1000;background:#fff;border-radius:16px 16px 0 0;box-shadow:0 -4px 24px rgba(0,0,0,.1);padding:0 16px max(16px,env(safe-area-inset-bottom,16px));max-height:40vh;overflow-y:auto;-webkit-overflow-scrolling:touch;transition:max-height .3s ease}
+.bottom-sheet.expanded{max-height:72vh}.sheet-handle{width:40px;height:5px;border-radius:3px;background:#d0d0d0;margin:12px auto 4px;cursor:grab;touch-action:none;flex-shrink:0}
+.itinerary h3{font-size:14px;color:#A78BFA;margin:8px 0 10px}
+.step{display:flex;gap:10px;padding:10px 0;align-items:flex-start;border-left:2px solid #EBE0FF;padding-left:12px;margin-left:6px;position:relative}
+.step::before{content:'';position:absolute;left:-5px;top:15px;width:8px;height:8px;border-radius:50%;background:#A78BFA}.step:last-child{border-left-color:transparent}
+.step-time{font-size:11px;color:#A78BFA;font-weight:600;min-width:64px}.step-info{flex:1}.step-title{font-size:14px;font-weight:600;color:#333}.step-desc{font-size:12px;color:#999;margin-top:2px;line-height:1.4}
+.tips-section{margin-top:12px;padding:12px;background:#F6F0FF;border-radius:12px}.tips-section p{font-size:12px;color:#666;line-height:1.7;margin:2px 0}
+.cta-section{margin-top:10px;padding:16px;background:linear-gradient(135deg,#A78BFA,#8B6FE8);color:white;border-radius:14px;text-align:center}
+.cta-section a{display:block;color:white;text-decoration:none;font-size:16px;font-weight:700;padding:8px 0;min-height:44px;line-height:28px}.cta-section .note{font-size:11px;opacity:.75;margin-top:4px}
+.footer{text-align:center;font-size:10px;color:#ccc;padding:8px 0}
+</style></head><body>
+<div class="map-title"><h1>🍻 碰面邀请</h1><div class="sub">📍 江宁百家湖 · 咖啡→火锅→摩天轮下喝酒 · 晴 29°C</div></div>
+<div id="map"></div>
+<div class="bottom-sheet" id="sheet"><div class="sheet-handle" id="handle"></div>
+<div class="itinerary"><h3>📋 安排</h3>
+<div class="step"><span class="step-time">14:30</span><div class="step-info"><div class="step-title">☕ 星巴克(金鹰1F)</div><div class="step-desc">双龙大道1680号 · 评分4.7 · 喝咖啡聊天</div></div></div>
+<div class="step"><span class="step-time">17:00</span><div class="step-info"><div class="step-title">🍲 左庭右院牛肉火锅(金鹰4F)</div><div class="step-desc">同一栋楼4楼 · 评分4.6 · 鲜牛肉火锅不油腻</div></div></div>
+<div class="step"><span class="step-time">18:30</span><div class="step-info"><div class="step-title">🍷 PEACE PANDA 皮皮熊猫</div><div class="step-desc">1912街区摩天轮下临湖 · 评分4.6 · 步行8分钟</div></div></div>
+<div class="step"><span class="step-time">之后</span><div class="step-info"><div class="step-title">🍷 → 看气氛</div><div class="step-desc">聊得好自然延长——湖边散步或续杯，看当时感觉</div></div></div></div>
+<div class="tips-section"><p>🚇 地铁1号线百家湖站 · 👔 干净衬衫+长裤，火锅店别穿白色</p></div>
+<div class="cta-section"><a href="https://uri.amap.com/navigation?to=118.820843,31.931941,%E7%99%BE%E5%AE%B6%E6%B9%96%E9%87%91%E9%B9%B0&mode=car&coordinate=gaode" target="_blank">🧭 导航到百家湖金鹰</a><div class="note">点击打开高德地图 · 到时见 👋</div></div><div class="footer">🍻 下午见</div></div>
+<script>
+window._AMapSecurityConfig={securityJsCode:'da93de59c9c39cfa96a0596131db2e77'};var K='a9754588a48e22af3f95c35ccc88bc0a';var C=[118.820843,31.931941];
+var V=[{lng:118.820400,lat:31.932500,name:'星巴克(金鹰)',emoji:'☕'},{lng:118.820900,lat:31.932200,name:'左庭右院火锅',emoji:'🍲'},{lng:118.818753,lat:31.933025,name:'PEACE PANDA',emoji:'🍷'}];var M={primary:'#A78BFA'};var map=null,walkers=[],infoWin=null;
+function nav(v){window.open('https://uri.amap.com/navigation?to='+v.lng+','+v.lat+','+encodeURIComponent(v.name)+'&mode=car&coordinate=gaode','_blank')}
+(function(){var s=document.getElementById('sheet'),h=document.getElementById('handle'),y,H;h.addEventListener('click',function(){s.classList.toggle('expanded')});h.addEventListener('touchstart',function(e){y=e.touches[0].clientY;H=s.offsetHeight;e.preventDefault()},{passive:false});document.addEventListener('touchmove',function(e){if(y==null)return;var d=y-e.touches[0].clientY;s.style.maxHeight=Math.max(120,Math.min(window.innerHeight*.8,H+d))+'px'},{passive:false});document.addEventListener('touchend',function(){if(y==null)return;y=null;s.style.maxHeight='';s.classList.toggle('expanded',s.offsetHeight>window.innerHeight*.5)})})();
+</script><script src="https://webapi.amap.com/loader.js"></script>
+<script>
+AMapLoader.load({key:K,version:'2.0',plugins:['AMap.Walking']}).then(function(AMap){
+  map=new AMap.Map('map',{center:C,zoom:15,viewMode:'2D'});infoWin=new AMap.InfoWindow({offset:new AMap.Pixel(0,-50),closeWhenClickMap:true});
+  new AMap.Marker({position:C,map:map,zIndex:100,content:'<div style="background:'+M.primary+';color:white;padding:6px 14px;border-radius:14px;font-size:14px;font-weight:700;white-space:nowrap;box-shadow:0 2px 10px rgba(0,0,0,.25)">📍 百家湖</div>'});
+  V.forEach(function(v,i){var mk=new AMap.Marker({position:[v.lng,v.lat],map:map,zIndex:90+i,content:'<div style="background:'+M.primary+';color:white;padding:5px 10px;border-radius:10px;font-size:13px;font-weight:600;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.2);cursor:pointer">'+(i+1)+'. '+v.emoji+' '+v.name+'</div>'});
+    mk.on('click',function(){infoWin.setContent('<div style="padding:4px 0"><b style="font-size:14px">'+v.emoji+' '+v.name+'</b><p style="font-size:12px;color:#666;margin:6px 0">百家湖商圈</p><a href="javascript:void(0)" onclick="nav(V['+i+'])" style="display:inline-block;padding:6px 14px;background:'+M.primary+';color:white;border-radius:8px;font-size:12px;text-decoration:none;margin-top:4px">🧭 导航到这里</a></div>');infoWin.open(map,mk.getPosition())});
+    var w=new AMap.Walking({map:map,hideMarkers:true});walkers.push(w);w.search(new AMap.LngLat(C[0],C[1]),new AMap.LngLat(v.lng,v.lat));});
+  new AMap.Polyline({map:map,path:V.map(function(v){return[v.lng,v.lat]}),strokeColor:M.primary,strokeWeight:3,strokeOpacity:.55,strokeStyle:'dashed',strokeDasharray:[10,6],showDir:true,zIndex:5});
+  map.setFitView(null,false,[70,70,70,50]);
+});</script></body></html>

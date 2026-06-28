@@ -1,0 +1,95 @@
+# 约会邀请卡片 HTML 模板
+
+Agent 生成时选择主题色、替换 `{占位符}`、填入实际数据。模板已包含 Walking 路线 + 点击 info 窗口 + 手机安全区。
+
+## 主题色速查
+
+| 场景 | 关键词 | 主题色 | CSS 类名 |
+|------|--------|:---:|------|
+| 初次见面/相亲 | 第一次见、相亲、网友见面 | #4ECDC4 | `theme-mint` |
+| 朋友/日常约会 | 朋友、喝一杯、随便、吃个饭 | #A78BFA | `theme-purple` |
+| 情侣/纪念日 | 纪念日、生日、表白 | #FF6B8A | `theme-pink` |
+| 商务 | 谈事、客户、正式 | #64748B | `theme-grey` |
+
+## 模板
+
+复制以下代码，将 `THEME_COLOR` 全部替换为主题色，`{占位符}` 替换为实际数据。
+
+```html
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><title>{标题}</title><style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{height:100%;overflow:hidden}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif}
+#map{width:100%;height:100%}
+.map-title{position:fixed;top:max(16px,env(safe-area-inset-top,16px));left:16px;z-index:999;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:12px 16px;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.08);max-width:calc(100% - 32px)}
+.map-title h1{font-size:18px;font-weight:800;color:#333;margin-bottom:2px}
+.map-title .sub{font-size:12px;color:#999;line-height:1.5}
+.bottom-sheet{position:fixed;left:0;right:0;bottom:0;z-index:1000;background:#fff;border-radius:16px 16px 0 0;box-shadow:0 -4px 24px rgba(0,0,0,.1);padding:0 16px max(16px,env(safe-area-inset-bottom,16px));max-height:40vh;overflow-y:auto;-webkit-overflow-scrolling:touch;transition:max-height .3s ease}
+.bottom-sheet.expanded{max-height:72vh}
+.sheet-handle{width:40px;height:5px;border-radius:3px;background:#d0d0d0;margin:12px auto 4px;cursor:grab;touch-action:none;flex-shrink:0}
+.itinerary h3{font-size:14px;color:THEME_COLOR;margin:8px 0 10px}
+.step{display:flex;gap:10px;padding:10px 0;align-items:flex-start;border-left:2px solid COLOR_15;padding-left:12px;margin-left:6px;position:relative}
+.step::before{content:'';position:absolute;left:-5px;top:15px;width:8px;height:8px;border-radius:50%;background:THEME_COLOR}
+.step:last-child{border-left-color:transparent}
+.step-time{font-size:11px;color:THEME_COLOR;font-weight:600;min-width:64px}
+.step-info{flex:1}.step-title{font-size:14px;font-weight:600;color:#333}.step-desc{font-size:12px;color:#999;margin-top:2px;line-height:1.4}
+.tips-section{margin-top:12px;padding:12px;background:COLOR_10;border-radius:12px}
+.tips-section p{font-size:12px;color:#666;line-height:1.7;margin:2px 0}
+.cta-section{margin-top:10px;padding:16px;background:linear-gradient(135deg,THEME_COLOR,THEME_DARK);color:white;border-radius:14px;text-align:center}
+.cta-section a{display:block;color:white;text-decoration:none;font-size:16px;font-weight:700;padding:8px 0;min-height:44px;line-height:28px}
+.cta-section .note{font-size:11px;opacity:.75;margin-top:4px}
+.footer{text-align:center;font-size:10px;color:#ccc;padding:8px 0}
+</style></head><body>
+<div class="map-title"><h1>{emoji} {标题}</h1><div class="sub">{地段+天气}</div></div>
+<div id="map"></div>
+<div class="bottom-sheet" id="sheet">
+<div class="sheet-handle" id="handle"></div>
+<div class="itinerary"><h3>📋 安排</h3>
+{动线步骤——每个 step 一个 div.step}
+</div>
+<div class="tips-section">{交通+着装}</div>
+<div class="cta-section"><a href="{导航URL}" target="_blank">🧭 导航到{目的地}</a><div class="note">点击打开高德地图 · 到时见 👋</div></div>
+<div class="footer">{emoji} {结尾语}</div></div>
+<script>
+window._AMapSecurityConfig={securityJsCode:'{JS_CODE}'};
+var K='{JS_KEY}',C=[{lng},{lat}];
+var V=[{VENUES_ARRAY}]; // [{lng,lat,name,emoji}]
+var M={primary:'THEME_COLOR'};var map=null,walkers=[],infoWin=null;
+function nav(v){window.open('https://uri.amap.com/navigation?to='+v.lng+','+v.lat+','+encodeURIComponent(v.name)+'&mode=car&coordinate=gaode','_blank')}
+(function(){var s=document.getElementById('sheet'),h=document.getElementById('handle'),y,H;h.addEventListener('click',function(){s.classList.toggle('expanded')});h.addEventListener('touchstart',function(e){y=e.touches[0].clientY;H=s.offsetHeight;e.preventDefault()},{passive:false});document.addEventListener('touchmove',function(e){if(y==null)return;var d=y-e.touches[0].clientY;s.style.maxHeight=Math.max(120,Math.min(window.innerHeight*.8,H+d))+'px'},{passive:false});document.addEventListener('touchend',function(){if(y==null)return;y=null;s.style.maxHeight='';s.classList.toggle('expanded',s.offsetHeight>window.innerHeight*.5)})})();
+</script>
+<script src="https://webapi.amap.com/loader.js"></script>
+<script>
+AMapLoader.load({key:K,version:'2.0',plugins:['AMap.Walking']}).then(function(AMap){
+  map=new AMap.Map('map',{center:C,zoom:15,viewMode:'2D'});
+  infoWin=new AMap.InfoWindow({offset:new AMap.Pixel(0,-50),closeWhenClickMap:true});
+  new AMap.Marker({position:C,map:map,zIndex:100,content:'<div style="background:'+M.primary+';color:white;padding:6px 14px;border-radius:14px;font-size:14px;font-weight:700;white-space:nowrap;box-shadow:0 2px 10px rgba(0,0,0,.25)">📍 {区域名}</div>'});
+  V.forEach(function(v,i){
+    var mk=new AMap.Marker({position:[v.lng,v.lat],map:map,zIndex:90+i,content:'<div style="background:'+M.primary+';color:white;padding:5px 10px;border-radius:10px;font-size:13px;font-weight:600;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.2);cursor:pointer">'+(i+1)+'. '+v.emoji+' '+v.name+'</div>'});
+    mk.on('click',function(){infoWin.setContent('<div style="padding:4px 0"><b style="font-size:14px">'+v.emoji+' '+v.name+'</b><p style="font-size:12px;color:#666;margin:6px 0">{描述}</p><a href="javascript:void(0)" onclick="nav(V['+i+'])" style="display:inline-block;padding:6px 14px;background:'+M.primary+';color:white;border-radius:8px;font-size:12px;text-decoration:none;margin-top:4px">🧭 导航到这里</a></div>');infoWin.open(map,mk.getPosition())});
+    var w=new AMap.Walking({map:map,hideMarkers:true});walkers.push(w);w.search(new AMap.LngLat(C[0],C[1]),new AMap.LngLat(v.lng,v.lat));
+  });
+  if(V.length>1){new AMap.Polyline({map:map,path:V.map(function(v){return[v.lng,v.lat]}),strokeColor:M.primary,strokeWeight:3,strokeOpacity:.55,strokeStyle:'dashed',strokeDasharray:[10,6],showDir:true,zIndex:5})}
+  map.setFitView(null,false,[70,70,70,50]);
+});
+</script>
+</body></html>
+```
+
+## Agent 替换清单
+
+| 占位符 | 替换为 | 示例 |
+|--------|--------|------|
+| `THEME_COLOR` | 主题色 hex | `#4ECDC4` |
+| `THEME_DARK` | 主题色深色变体 | `#44B5AD` |
+| `COLOR_15` | 主题色 15% 透明 | `#D4F5F2` (薄荷) / `#EBE0FF` (紫) / `#FFE0E6` (粉) / `#E2E8F0` (灰) |
+| `COLOR_10` | 主题色 10% 透明 | `#F0FBFA` (薄荷) / `#F6F0FF` (紫) / `#FFF5F7` (粉) / `#F1F5F9` (灰) |
+| `{emoji}` | 标题 emoji | ☕ / 🍻 / 💕 / 📋 |
+| `{标题}` | 邀请卡标题 | "见面邀请" / "碰面邀请" / "约会邀请" / "会面安排" |
+| `{JS_CODE}` | 环境变量 `AMAP_SECURITY_JS_CODE` | `da93de...` |
+| `{JS_KEY}` | 环境变量 `AMAP_JSAPI_KEY` | `a97545...` |
+| `{lng},{lat}` | 会面点坐标 | `118.785,32.040` |
+| `{VENUES_ARRAY}` | JS 数组，每项 `{lng,lat,name,emoji}` | `[{lng:118.78,lat:32.04,name:'星巴克',emoji:'☕'}]` |
+| `{区域名}` | 会面区域 | "新街口" |
+| `{描述}` | 场所一句话描述 | "万达3F · ¥72/人 · 4.1⭐" |
+| `{导航URL}` | `uri.amap.com/navigation?...` |  |
+| `{结尾语}` | 底部文案 | "下午见" / "今晚见" / "到时见" |
