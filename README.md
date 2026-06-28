@@ -121,7 +121,7 @@
 | 🍲 百家湖·咖啡→火锅→清吧 | ☕→🍲→🍷 | 星巴克→左庭右院→PEACE PANDA | [`examples/baijiahu-hotpot-bar/`](examples/baijiahu-hotpot-bar/) |
 | 🎬 九龙湖+万达·西餐→电影→清吧 | 🍽️→🎬→🍷 双人 | 乐班→幸福蓝海→PLUTO | [`examples/jiulonghu-wanda/`](examples/jiulonghu-wanda/) |
 
-每个示例：`report.md`（报告+原始API数据） + `map.html`（决策地图） + `invitation.html`（邀请卡片） + `date_plan.csv`
+每个示例：`report.md`（报告+原始API数据） + `map.html`（决策地图） + `invitation.html`（邀请卡片） + `date_plan.csv` + `date_pois.csv`（完整搜索结果）
 
 ## 🚀 安装
 
