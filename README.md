@@ -8,7 +8,7 @@
 
 [![Amap Skill](https://img.shields.io/badge/高德地图-Skill-blue)](https://lbs.amap.com/)
 [![Version](https://img.shields.io/badge/version-1.0.0-green)]()
-[![Platform](https://img.shields.io/badge/platform-Claude%20Code%20%7C%20OpenClaw-blueviolet)]()
+[![Platform](https://img.shields.io/badge/platform-AI%20Agent%20%7C%20Claude%20Code%20%7C%20OpenClaw%20%7C%20QoderWork-blueviolet)]()
 
 [快速开始](#安装) · [示例](#示例) · [核心功能](#核心功能) · [安装](#安装) · [使用](#使用) · [常见问题](#常见问题)
 
