@@ -8,6 +8,9 @@
 
 [![Amap Skill](https://img.shields.io/badge/高德地图-Skill-blue)](https://lbs.amap.com/)
 [![Version](https://img.shields.io/badge/version-1.0.0-green)]()
+[![Platform](https://img.shields.io/badge/platform-Claude%20Code%20%7C%20OpenClaw-blueviolet)]()
+
+[快速开始](#安装) · [示例](#示例) · [核心功能](#核心功能) · [安装](#安装) · [使用](#使用) · [常见问题](#常见问题)
 
 > 🆕 **约会邀请卡片**：生成一个 HTML 文件，发给她/他——地图、动线、时间、着装建议，一张卡片搞定。约人不用打 10 行字。
 
