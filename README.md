@@ -56,6 +56,32 @@
 🏆 如果只选一个：选湖畔咖啡馆——离双方都近，安静，靠窗有湖景
 ```
 
+### 效果演示
+
+**电脑端 · 决策地图**：推荐点 + 动线虚线 + 点击 Marker 弹详情 + 底部卡片
+
+<p align="center">
+  <img src="docs/screenshot-map.png" alt="电脑端决策地图" width="720">
+</p>
+
+**电脑端 · 邀请卡片**：粉色请帖风格 + 地图 + 动线时间轴 + 导航 CTA
+
+<p align="center">
+  <img src="docs/screenshot-invitation.png" alt="电脑端邀请卡片" width="720">
+</p>
+
+**手机端 · 地图 + 导航**：移动端全屏地图 + 底部抽屉面板 + 点击导航
+
+<p align="center">
+  <img src="docs/mobile-map-link.jpg" alt="手机端地图" width="360">
+</p>
+
+**手机端 · 邀请卡片**：微信直接打开 + 可拖拽面板 + 一键导航
+
+<p align="center">
+  <img src="docs/mobile-map-invitation.jpg" alt="手机端邀请卡片" width="360">
+</p>
+
 ---
 
 ## ✨ 核心功能
