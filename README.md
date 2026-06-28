@@ -4,17 +4,11 @@
 
 **找个地方 + 规划动线 + 生成邀请卡片。一句话 → 一张可以发给 ta 的约会请帖。**
 
-*Venue discovery + itinerary planning + shareable invitation card. One sentence → one date.*
-
 [![Amap Skill](https://img.shields.io/badge/高德地图-Skill-blue)](https://lbs.amap.com/)
 [![Version](https://img.shields.io/badge/version-1.0.0-green)]()
 [![Platform](https://img.shields.io/badge/platform-AI%20Agent%20%7C%20Claude%20Code%20%7C%20OpenClaw%20%7C%20QoderWork-blueviolet)]()
 
-[快速开始](#安装) · [示例](#示例) · [核心功能](#核心功能) · [安装](#安装) · [使用](#使用) · [常见问题](#常见问题)
-
-> 🆕 **约会邀请卡片**：生成一个 HTML 文件，发给她/他——地图、动线、时间、着装建议，一张卡片搞定。约人不用打 10 行字。
-
-[中文](#-场景) | [English](#-scenario)
+[📖 场景](#-场景) · [📸 效果演示](#-效果演示) · [✨ 核心功能](#-核心功能) · [📊 示例](#-示例) · [🚀 安装](#-安装) · [💬 使用](#-使用) · [❓ 常见问题](#-常见问题) · [📂 项目结构](#-项目结构) · [English](#english)
 
 </div>
 
@@ -37,26 +31,19 @@
 
 1. ☕ 湖畔咖啡馆 — 浪漫
    📌 莫愁路 88 号 · 步行约 4 分钟
-   🟢 营业中
    🚶 你 地铁15分钟 | 她 步行8分钟
    ✨ 靠窗位能看到湖景，安静适合聊天
 
 2. 🌿 莫愁湖公园 — 轻松
    📌 水西门大街 · 步行约 6 分钟
-   🟢 营业中
-   🚶 你 地铁18分钟 | 她 步行10分钟
-   ✨ 今天天气好，湖边散步很舒服
 
 3. 📚 先锋书店 — 文艺
    📌 五台山体育馆 · 步行约 12 分钟
-   🟢 营业中
-   🚶 你 地铁22分钟 | 她 步行15分钟
-   ✨ 南京地标级书店，有咖啡区可以坐下来聊
 
 🏆 如果只选一个：选湖畔咖啡馆——离双方都近，安静，靠窗有湖景
 ```
 
-### 效果演示
+## 📸 效果演示
 
 **电脑端 · 决策地图**：推荐点 + 动线虚线 + 点击 Marker 弹详情 + 底部卡片
 
@@ -64,13 +51,13 @@
   <img src="docs/screenshot-map.png" alt="电脑端决策地图" width="720">
 </p>
 
-**电脑端 · 邀请卡片**：粉色请帖风格 + 地图 + 动线时间轴 + 导航 CTA
+**电脑端 · 邀请卡片**：请帖风格 + 地图 + 动线时间轴 + 导航 CTA
 
 <p align="center">
   <img src="docs/screenshot-invitation.png" alt="电脑端邀请卡片" width="720">
 </p>
 
-**手机端 · 地图 + 导航**：移动端全屏地图 + 底部抽屉面板 + 点击导航
+**手机端 · 地图 + 导航**：全屏地图 + 底部抽屉面板 + 点击导航
 
 <p align="center">
   <img src="docs/mobile-map-link.jpg" alt="手机端地图" width="360">
@@ -82,113 +69,61 @@
   <img src="docs/mobile-map-invitation.jpg" alt="手机端邀请卡片" width="360">
 </p>
 
----
-
 ## ✨ 核心功能
 
 | 你只需要说 | 助手帮你做 |
 |:---|:---|
-| "第一次见面，在 XX" | 12 种时段模式匹配 → 周边搜索 → 筛选排除 → 3 个推荐 + 动线 |
-| "我在 XX，她在 YY" | 地理编码 → 计算中点 → 分别算通勤时间 → 公平性评估 |
-| "生成邀请卡片" | 🆕 生成约会邀请卡 HTML——发给 ta，地图/动线/着装一页搞定 |
-| "都不喜欢，太贵了" | 解析不满原因 → 缩小范围 → 推荐 3 个新的 |
-| 未指定时间/菜系/性别 | 逐项追问确认，不猜不假设 |
+| "第一次见面，在 XX" | 12 种时段模式匹配 → 周边 13 类 POI 搜索 → 筛选 → 3 个推荐 + 动线 |
+| "我在 XX，她在 YY" | 地理编码 → 计算中点 → 分别算通勤 → 公平性评估 |
+| "生成邀请卡片" | 🆕 生成约会请帖 HTML——发给 ta，地图/动线/着装一页搞定 |
+| "太贵了，换一个" | 解析不满原因 → 缩小范围 → 推荐 3 个新的 |
 
-### 🎯 智能风格推断
+### 🎯 12 种时段模式
 
-根据你说话的方式自动匹配推荐风格：
+| 模式 | 说明 | 动线 |
+|------|------|:--:|
+| 🥐 午饭局 | 中午吃个饭 | 午饭→咖啡 |
+| ☕ 下午茶 | 喝杯咖啡简单见 | 咖啡→（散步） |
+| 🍽️ 纯晚饭 | 下班后吃个饭 | 晚饭→（酒吧） |
+| 🌙 晚饭+续摊 | 吃+喝+深夜 | 晚饭→酒吧 |
+| 🎬 电影+吃饭 | 先看后吃有话题 | 电影→晚饭 |
+| 🥂 纯喝一杯 | 坐坐小酌 | 酒吧→（第二家） |
+| 🎯 活动优先 | 密室/看展/剧本杀 | 活动→吃饭 |
+| 🛍️ 逛街+吃饭 | 商场一站式 | 商场→餐厅 |
+| 🌤️ 全天 | 周末一整天 | 午→逛→晚→夜 |
+| ... | *共 12 种，全覆盖* | |
 
-| 你说的 | 助手理解的 | 偏向搜索 |
-|:---|:---|:---|
-| "第一次见面""约会""表白" | 🌹 浪漫 | 咖啡馆 + 公园 + 甜品 |
-| "朋友聚聚""喝一杯""随意" | 🍻 轻松 | 小酒馆 + 轻食 + 公园 |
-| "看书""安静""文艺" | 📖 文艺 | 书店 + 咖啡馆 + 美术馆 |
-| "谈事""客户""正式" | 💼 商务 | 茶馆 + 咖啡厅 + 安静餐厅 |
+### 💌 约会邀请卡片
 
-### 🚶 双方通勤时间
+选定方案后，生成一张可直接发给对方的 HTML 邀请卡片：
+- 🗺️ 全屏地图 + 会面点 + 推荐点 + 路线
+- 📋 动线时间轴（只放时间+场所，不暴露"作战计划"）
+- 👔 贴心提醒（交通+着装，不放礼物/预算/冷场策略）
+- 🎨 4 种主题色：薄荷绿（初识）/ 薰衣草紫（朋友）/ 暖粉（情侣）/ 深蓝灰（商务）
+- 📱 移动端微信直接打开，一键导航
 
-不只是推荐"好地方"——推荐"对你们俩都方便的好地方"。
+### 🧠 约会行为指南
 
-```
-🚶 你 地铁15分钟 | 她 步行8分钟     ← 公平！
-🚶 你 地铁35分钟 | 她 步行5分钟     ← 不太公平，会注明
-```
+不只是推荐地点——从到场到散场的完整行为脚本：
+- 🎁 礼物策略（什么时候带/带什么）
+- 🗣️ 话题三阶段 + 避雷表
+- 🧊 冷场救援 3 话题
+- 🚦 节奏信号识别（绿灯/黄灯/散场）
+- 👋 散场公式 + 📱 散场后消息模板
+- 👔 着装速查（6 种场所 × 男女双视角）
 
-### 🌦️ 天气联动
+## 📊 示例
 
-搜索前自动查天气，下雨天不会推荐你去公园淋雨：
+两个真实场景，基于高德 API 实时数据生成：
 
-- 晴天 → 公园优先，"傍晚去光线好"
-- 下雨 → 只推室内，"今天有阵雨，推荐的都是室内好去处"
-- 高温/严寒 → 优先有空调/暖气的地方
+| 场景 | 模式 | 动线 | 文件 |
+|------|------|------|------|
+| 🍲 百家湖·咖啡→火锅→清吧 | ☕→🍲→🍷 | 星巴克→左庭右院→PEACE PANDA | [`examples/baijiahu-hotpot-bar/`](examples/baijiahu-hotpot-bar/) |
+| 🎬 九龙湖+万达·西餐→电影→清吧 | 🍽️→🎬→🍷 双人 | 乐班→幸福蓝海→PLUTO | [`examples/jiulonghu-wanda/`](examples/jiulonghu-wanda/) |
 
-### 💬 一键约人消息
+每个示例：`report.md`（报告+原始API数据） + `map.html`（决策地图） + `invitation.html`（邀请卡片） + `date_plan.csv`
 
-选好地方后说"帮我写个约她的消息"，生成自然口语的邀请文字：
-
-```
-我在莫愁湖附近找到了一个挺安静的咖啡馆，靠窗能看到湖景。
-你从河西万达过来只要步行 8 分钟，现在正好营业中。
-地址是莫愁路 88 号，到了我发你定位 👉 https://uri.amap.com/marker?...
-```
-
-直接复制发给对方，不像营销文案。
-
-### 💌 约会邀请卡片（HTML）
-
-说"生成邀请卡片"或"帮我做个邀请"，生成一张可**直接发给对方**的约会请帖 HTML：
-- 🗺️ 上半屏：高德交互地图，会面点+推荐点+路线一目了然
-- 💌 下半屏：动线时间轴 + 地点卡片 + 着装建议 + 礼物提示
-- 🎨 粉色渐变设计，像请帖不像工具页
-- 📱 移动端优先，微信直接打开
-- 🔗 底部一键导航按钮，点击跳转高德地图
-
-> **约人不用打 10 行字**。选好地方 → 生成邀请卡 → 发 HTML 给她/他。一页包含所有信息。
-
----
-
-## 🎯 适合谁
-
-| 场景 | 痛点 | Date Spot 怎么帮 |
-|:---|:---|:---|
-| 相亲/第一次见面 | 不知道去哪，怕太尴尬 | 推荐安静适合聊天的地方，附氛围描述 |
-| 朋友约见面 | 两人位置不同，找中间点麻烦 | 自动算中点 + 分别算通勤时间 |
-| 商务约见 | 需要得体但不太正式 | 商务风格推断：茶馆、安静咖啡厅 |
-| 老夫老妻约会 | 想不到新地方 | 基于位置发现周边没去过的好店 |
-
----
-
-## 🤔 为什么不直接用大众点评或高德？
-
-| | 大众点评 | 高德地图 | Date Spot |
-|:---|:---|:---|:---|
-| 排序逻辑 | 热度/评分 | 距离 | 风格匹配 + 距离 + 多样性 |
-| 筛选 | 需要手动选分类 | 显示所有 POI | 自动排除火锅/KTV/快餐 |
-| 两人中点 | 不支持 | 不支持 | 自动算中点 + 双方通勤时间 |
-| 天气 | 不考虑 | 不考虑 | 下雨自动推室内 |
-| 营业时间 | 显示但不筛选 | 不筛选 | 自动标注状态，已关门降权 |
-| 约人闭环 | 没有 | 没有 | 选点 → 导航 → 生成邀请消息 |
-
-简单说：大众点评告诉你"哪家店评分高"，高德告诉你"附近有什么"，Date Spot 告诉你"你们俩去哪最合适"。
-
----
-
-## ⚙️ 技术亮点
-
-| 特性 | 说明 |
-|:---|:---|
-| 高德 Web Service API | 6 类 POI 分别搜索，智能排除（火锅、KTV、快餐） |
-| 双人通勤计算 | 路径规划 API 分别计算双方到达时间，评估公平性 |
-| 天气联动 | 天气 API 自动判断，雨天不推荐户外 |
-| 高德深链接 | 每个推荐附 `uri.amap.com` 导航链接，点击直达高德 App |
-| 地图模式 | JS API v2.0 + AMap.Walking 路径规划，移动端优先 |
-| 对话流闭环 | 不满意 → 追问原因 → 重新推荐，支持 POI 详情查询 |
-
----
-
-## 🚀 快速开始
-
-### 安装
+## 🚀 安装
 
 ```bash
 openclaw skills install @dongdongyue/amap-date-spot
@@ -204,75 +139,50 @@ openclaw skills install @dongdongyue/amap-date-spot
 
 > 免费额度：5000 次/天。
 
-### 使用
-
-在 AI 助手中直接说：
+## 💬 使用
 
 ```
-帮我找个约会的地方，在新街口附近
+"新街口附近，第一次见面，下午喝杯咖啡"         → ☕ 下午茶模式
+"我在大行宫，她在河西万达，吃日料喝一杯"        → 🌙 双人模式
+"江宁百家湖，下午咖啡→火锅→清吧，开车"          → 三站动线
+"帮我生成邀请卡片"                             → 💌 发出 HTML 请帖
 ```
 
-```
-我在大行宫，她在河西万达，第一次见面
-```
+## ❓ 常见问题
 
-```
-找个安静的咖啡馆，适合谈事情
-```
+**Q: 推荐的店我不喜欢怎么办？**
+说"太贵了""太远了""换一个"，助手会根据反馈重新推荐，不复述已推过的。
 
-```
-都不喜欢，有没有公园可以散步的
-```
+**Q: 支持哪些城市？**
+全国有高德 POI 数据的城市都支持。天气联动覆盖全国。
 
----
-
-## 📂 示例
-
-两个真实场景，基于高德 API 实时数据生成：
-
-| 场景 | 模式 | 动线 | 文件 |
-|------|------|------|------|
-| 🍲 百家湖·咖啡→火锅→清吧 | ☕→🍲→🍷 三站 | 星巴克→左庭右院→PEACE PANDA | [`examples/baijiahu-hotpot-bar/`](examples/baijiahu-hotpot-bar/) |
-| 🎬 九龙湖+建邺万达·西餐→电影→清吧 | 🍽️→🎬→🍷 双人 | 乐班→幸福蓝海→PLUTO | [`examples/jiulonghu-wanda/`](examples/jiulonghu-wanda/) |
-
-每个示例包含：
-- `report.md` — 完整推荐 + 动线 + 行为指南 + API 原始数据
-- `map.html` — 决策地图（给自己看：评分/备选/行为指南）
-- `invitation.html` — 邀请卡片（发给 ta：干净请帖风格）
-- `date_plan.csv` — 行程 CSV
-
----
+**Q: 需要装 Python 吗？**
+不需要。纯提示词驱动，AI 助手直接调用高德 HTTP API。
 
 ## 📂 项目结构
 
 ```
 amap-date-spot/
-├── README.md                      # 本文件
+├── README.md
 ├── SKILL.md                       # Skill 定义（核心）
 ├── skill.json                     # 元数据
 ├── LICENSE                        # MIT 协议
 ├── docs/                          # 效果截图
 │   ├── screenshot-map.png
+│   ├── screenshot-invitation.png
 │   ├── mobile-map-link.jpg
 │   └── mobile-map-invitation.jpg
-├── .env.example
-├── .gitignore
 ├── references/
-│   ├── invitation-card.html       # 邀请卡模板（4主题色·copy-paste可用）
-│   ├── html-template-map.md       # 决策地图模板（InfoWindow+安全区+多路线）
-│   ├── text-card-date-spot.md     # CSS 降级卡片（无 JS Key 时）
+│   ├── invitation-card.html       # 邀请卡片模板（4主题色）
+│   ├── html-template-map.md       # 决策地图模板
+│   ├── text-card-date-spot.md     # CSS 降级卡片
 │   └── text-card-template.md      # 纯文本输出格式
 ├── examples/
 │   ├── baijiahu-hotpot-bar/       # ☕→🍲→🍷 咖啡+火锅+清吧
-│   │   ├── report.md
-│   │   ├── map.html               # 决策地图
-│   │   ├── invitation.html        # 邀请卡片
-│   │   └── date_plan.csv
 │   └── jiulonghu-wanda/           # 🍽️→🎬→🍷 西餐+电影+清吧（双人）
-│       ├── report.md
-│       ├── map.html
-│       ├── invitation.html
-│       └── date_plan.csv
+├── .env.example
+├── .gitignore
+└── skill.json
 ```
 
 ### 调用的高德 API
@@ -280,43 +190,44 @@ amap-date-spot/
 | API | 用途 |
 |-----|------|
 | `geocode/geo` | 地名 → 坐标 |
-| `place/around` | 周边 POI 搜索 |
+| `geocode/regeo` | 坐标 → 地名（中点逆地理编码） |
+| `place/around` | 周边 POI 搜索（13 类） |
+| `place/text` | 锚点场所搜索 |
 | `direction/transit/integrated` | 公交路线 |
 | `direction/walking` | 步行路线 |
+| `direction/driving` | 驾车路线 |
 | `weather/weatherInfo` | 天气查询 |
 
 ---
 
-## 📄 License
+## English
 
-MIT
+### Scenario
 
----
+> Xiaolin finally asked a girl to meet up. She's at Hexi Wanda, he's at Daxinggong. **But where?**
 
-<div align="center">
+He said one sentence: **"I'm at Daxinggong, she's at Hexi Wanda, find us somewhere — first date"**
 
-## 🌐 One Sentence Pitch
-
-> **The only AI skill that plans your entire date — finds the spot, builds the itinerary, and generates a shareable invitation card you can send directly to them.**
-
-## 🌐 Scenario
-
-> Xiaolin finally asked a girl from the neighboring class to meet up.
->
-> She's at Hexi Wanda, he's at Daxinggong. They agreed to meet somewhere in between. **But where?**
->
-> He said one sentence: **"I'm at Daxinggong, she's at Hexi Wanda, find us somewhere in the middle — first date"**
-
-Date Spot found a lakeside café, 4 minutes walk from the midpoint, with a navigation link.
+Date Spot found a lakeside café, 4 minutes walk, with a navigation link.
 
 ### What it does
 
-- **Smart style inference**: Detects your intent from keywords (romantic / casual / artsy / business)
-- **Dual-location midpoint**: Geocodes both locations, calculates midpoint, searches nearby
-- **Commute fairness**: Shows how long each person needs to travel
-- **Weather-aware**: Won't recommend parks on rainy days
-- **Deep links**: Every venue comes with an Amap navigation link
-- **Interactive map mode**: Optional HTML map with walking routes (AMap JS API v2.0)
+- **12 time modes**: lunch, afternoon tea, dinner, dinner+bar, movie+dinner, drinks only, full day...
+- **Smart venue search**: 13 POI categories with cuisine filtering + dietary restrictions
+- **Dual-location midpoint**: auto-calculates fair meeting point
+- **Weather-aware**: won't recommend parks on rainy days
+- **Invitation card**: shareable HTML with map, itinerary, dress code — no "battle plan" exposed
+- **Date behavior guide**: gift strategy, conversation topics, ice-breakers, signals, exit script
+- **4 color themes**: mint (first meet), purple (friends), pink (couples), grey (business)
+
+### Demo
+
+<p align="center">
+  <img src="docs/screenshot-map.png" alt="Decision Map" width="720">
+  <img src="docs/screenshot-invitation.png" alt="Invitation Card" width="720">
+  <img src="docs/mobile-map-link.jpg" alt="Mobile Map" width="360">
+  <img src="docs/mobile-map-invitation.jpg" alt="Mobile Invitation" width="360">
+</p>
 
 ### Install
 
@@ -324,7 +235,7 @@ Date Spot found a lakeside café, 4 minutes walk from the midpoint, with a navig
 openclaw skills install @dongdongyue/amap-date-spot
 ```
 
-> Requires a free Amap API Key. See [Environment Variables](#environment-variables).
+> Requires a free Amap API Key.
 
 ### Environment Variables
 
@@ -334,27 +245,27 @@ openclaw skills install @dongdongyue/amap-date-spot
 | `AMAP_JSAPI_KEY` | ❌ | Same, type: 「Web(JS API)」 — for interactive maps |
 | `AMAP_SECURITY_JS_CODE` | ❌ | JS API security code |
 
-> Free tier: 5,000 calls/day.
-
 ### Usage
 
 ```
-Find us a date spot near Xinjiekou, Nanjing
-```
-
-```
-I'm at Daxinggong, she's at Hexi Wanda — first date
+"First date near Xinjiekou, afternoon coffee"           → ☕ Afternoon tea mode
+"I'm at Daxinggong, she's at Hexi Wanda — Japanese+drinks" → 🌙 Dual mode
+"Generate an invitation card"                            → 💌 Shareable HTML
 ```
 
 ### FAQ
 
 **Q: What if I don't like the recommendations?**
-Just say "too expensive" or "anything closer?" — the assistant will adjust and recommend 3 new places.
+Just say "too expensive" — the assistant adjusts and recommends 3 new places.
 
 **Q: Which cities are supported?**
-All cities in China with Amap POI data. Weather integration works nationwide.
+All cities in China with Amap POI data.
 
-**Q: Do I need to install Python?**
-No. This Skill is pure prompt-driven — the AI assistant calls Amap's HTTP API directly.
+**Q: Do I need Python?**
+No. Pure prompt-driven, AI calls Amap HTTP API directly.
 
-</div>
+---
+
+## 📝 License
+
+MIT
